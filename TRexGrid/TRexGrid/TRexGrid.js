@@ -142,10 +142,6 @@
                 $tr.append(this._headWriter(h, _columns[h].column, col[h], _columns[h].type));
             }
             $thead.append($tr);
-            var $tfoot = $('<tfoot />').append($('<tr />', {
-                text: "Total records: " + records.length
-            }).append('<div class="tRexInner"><a style="text-decoration:none;cursor:pointer;"><span class="glyphicon glyphicon-cog" style="color:white;align:center;font-size:30px;"></span></a></div>'));
-            $thead.after($tfoot);
         };
         this._headWriter = function (index, header, id, type) {
 
@@ -158,7 +154,7 @@
             if (settings.table.defaultColumnIdStyle)
                 header = utility.normalizeText(header, settings.table.defaultColumnIdStyle);
             if (settings.features.sort) {
-                var $span = $('<span class="dropdown pull-right"><a href=\"javascript:void(0);\" id="sorticon" class="glyphicon glyphicon-filter"></a><div class="dropdown-content"><a href="#"><span class="glyphicon glyphicon-sort-by-attributes"></span>&nbsp;&nbsp;Sort Asc</a><a href="#"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>&nbsp;&nbsp;Sort Desc</a></div></span>');
+                var $span = $('<span class="dropdown"><a href=\"javascript:void(0);\" id="sorticon" class="glyphicon glyphicon-filter"></a><div class="dropdown-content"><a href="#"><span class="glyphicon glyphicon-sort-by-attributes"></span>&nbsp;&nbsp;Sort Asc</a><a href="#"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>&nbsp;&nbsp;Sort Desc</a></div></span>');
                 return $th.text(header).append($span);
             }
             return $th.text(header);
@@ -258,7 +254,7 @@
         };
 
         this.init = function () {
-            obj.$element.after(this._getNavBar());
+            $('.tRexGrid').after(this._getNavBar());
             clear(),new defaultRowWiter(obj, settings).init(0);
         };
         var clear = function () {

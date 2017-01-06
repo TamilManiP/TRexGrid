@@ -1,0 +1,6 @@
+C:\Users\tamilmani.p\Documents\GitHub\TRexGrid\TRexGrid\bin\TRexGrid.dll.config
+C:\Users\tamilmani.p\Documents\GitHub\TRexGrid\TRexGrid\bin\TRexGrid.dll
+C:\Users\tamilmani.p\Documents\GitHub\TRexGrid\TRexGrid\bin\TRexGrid.pdb
+C:\Users\tamilmani.p\Documents\GitHub\TRexGrid\TRexGrid\obj\Debug\TRexGrid.csprojResolveAssemblyReference.cache
+C:\Users\tamilmani.p\Documents\GitHub\TRexGrid\TRexGrid\obj\Debug\TRexGrid.dll
+C:\Users\tamilmani.p\Documents\GitHub\TRexGrid\TRexGrid\obj\Debug\TRexGrid.pdb
