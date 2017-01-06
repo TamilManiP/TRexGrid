@@ -265,13 +265,15 @@
                 class: "paginglink"
             });
             for (var i = 0; i < Math.ceil(records.length / settings.paginate.maxRows) ; i++) {
-                var $a = $('<a>', {
-                    href: '#',
-                    text: (i + 1),
-                    "data-page": (i),
-                }).bind('click', function (e) {
-                    pageClickHandler(e);
-                }).appendTo(nav);
+                if (i < 10) {
+                    var $a = $('<a>', {
+                        href: '#',
+                        text: (i + 1),
+                        "data-page": (i),
+                    }).bind('click', function (e) {
+                        pageClickHandler(e);
+                    }).appendTo(nav);
+                }
             }
             $('<a>', {
                 href: '#',
