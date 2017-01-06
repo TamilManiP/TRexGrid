@@ -8,6 +8,13 @@ body {
 
 .tRexGrid {
     overflow-x: auto;
+    height: 411px;
+    border: 6px solid #012B39;
+    border-radius: 4px;
+}
+.gridHeder{
+    height:50px;
+    background-color:transparent;
 }
 
 .tRexGrid::-webkit-scrollbar {
@@ -44,8 +51,8 @@ table, tfoot {
 
 table {
     width: $fullwidth;
-    border-radius: 0.25em;
     border-collapse: collapse;
+    user-select:none;
 
     tbody tr {
         transition: background 0.25s ease;
@@ -154,11 +161,9 @@ table {
 .paginglink {
     width: 100%;
     margin-top: 0px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin: 0em 1em 1em 1em;
     height: 35px;
     text-align: left;
+margin-top:4px;
 
     a {
         border-width: 0px 0.5px 0px 0.5px;
@@ -170,14 +175,14 @@ table {
         height: 33px;
         width: 39.9px;
         color: $White-Color;
-        background-color: #012B39;
+        background-color: $Tangoroa-Color;
         margin: 0;
         text-decoration: none;
 
         &:hover {
-            border: 1px solid $Gainsboro_Sh-Color;
-            background-color: $White-Color;
-            color: $Tangoroa-Color;
+            border: 0px solid $Gainsboro_Sh-Color 0.5px solid $Gainsboro_Sh-Color 0px solid $Gainsboro_Sh-Color 0.5px solid $Gainsboro_Sh-Color;
+            background-color:$TulipTree-Color;
+            color: $White-Color;
         }
 
         &:active {
@@ -308,3 +313,5 @@ input[type=checkbox]:checked + #checkb:before {
         }
     }
 }
+
+
