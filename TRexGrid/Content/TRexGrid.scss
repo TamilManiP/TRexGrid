@@ -1,7 +1,6 @@
 ﻿@import "_variables.scss";
 @import "_mixins.scss";
 
-
 body {
     font-family: $font-family;
 }
@@ -21,6 +20,7 @@ body {
     margin-top: 5px;
     width: 12px;
     height: 15px;
+   -moz-appearance: toolbarbutton;
 }
 
 .tRexGrid::-webkit-scrollbar-track {
@@ -164,9 +164,9 @@ table {
     height: 35px;
     text-align: left;
 margin-top:4px;
+overflow-x:auto;
 
     a {
-        border-width: 0px 0.5px 0px 0.5px;
         border-style: solid;
         border-color: $Gainsboro_Sh-Color;
         padding: 4px;
@@ -180,19 +180,19 @@ margin-top:4px;
         text-decoration: none;
 
         &:hover {
-            border: 0px solid $Gainsboro_Sh-Color 0.5px solid $Gainsboro_Sh-Color 0px solid $Gainsboro_Sh-Color 0.5px solid $Gainsboro_Sh-Color;
-            background-color:$TulipTree-Color;
+             border: 2px solid $TulipTree-Color;
+            background-color: $TulipTree-Color;
             color: $White-Color;
         }
-
-        &:active {
+     
+    }
+     a.active{
             border: 2px solid $TulipTree-Color;
             background-color: $TulipTree-Color;
             color: $White-Color;
         }
-    }
 }
-
+  
 
 
 
@@ -314,4 +314,43 @@ input[type=checkbox]:checked + #checkb:before {
     }
 }
 
+.sorticon{
+    color: $TulipTree-Color;
+    padding-left:8px;
+}
+.paginginput{
+		-webkit-appearance: none;  /*Removes default chrome and safari style*/
+		-moz-appearance: none; /* Removes Default Firefox style*/
+        appearance:none;
+		background: #0088cc url(img/select-arrow.png) no-repeat 90% center;
+		width: 100px; /*Width of select dropdown to give space for arrow image*/
+		text-indent: 0.01px; /* Removes default arrow from firefox*/
+		text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+		color: #FFF;
+        background-color:white;
+        color:$Black-Color;
+        border:1px solid $Tangoroa-Color;
+        height:28px;
+        padding-left:5px;
+
+}
+.paginginput option { 
+  height: 35px; 
+  padding:5px; 
+  line-height: 35px; 
+}
+
+.paginginput::-webkit-scrollbar {
+    margin-top: 5px;
+    width: 12px;
+    height: 15px;
+}
+
+.paginginput::-webkit-scrollbar-track {
+    margin-top: 2px;
+}
+
+.paginginput::-webkit-scrollbar-thumb {
+    background-color: rgb(226, 184, 66);
+}
 

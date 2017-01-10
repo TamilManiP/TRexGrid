@@ -15,7 +15,8 @@ body {
 .tRexGrid::-webkit-scrollbar {
   margin-top: 5px;
   width: 12px;
-  height: 15px; }
+  height: 15px;
+  -moz-appearance: toolbarbutton; }
 
 .tRexGrid::-webkit-scrollbar-track {
   margin-top: 2px; }
@@ -123,9 +124,9 @@ table {
   margin-top: 0px;
   height: 35px;
   text-align: left;
-  margin-top: 4px; }
+  margin-top: 4px;
+  overflow-x: auto; }
   .paginglink a {
-    border-width: 0px 0.5px 0px 0.5px;
     border-style: solid;
     border-color: #ddd;
     padding: 4px;
@@ -138,13 +139,13 @@ table {
     margin: 0;
     text-decoration: none; }
     .paginglink a:hover {
-      border: 0px solid #ddd 0.5px solid #ddd 0px solid #ddd 0.5px solid #ddd;
-      background-color: #E2B842;
-      color: #fff; }
-    .paginglink a:active {
       border: 2px solid #E2B842;
       background-color: #E2B842;
       color: #fff; }
+  .paginglink a.active {
+    border: 2px solid #E2B842;
+    background-color: #E2B842;
+    color: #fff; }
 
 #checkb {
   display: inline-block;
@@ -245,5 +246,46 @@ input[type=checkbox]:checked + #checkb:before {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); }
     .dynatable-processing span img {
       vertical-align: middle; }
+
+.sorticon {
+  color: #E2B842;
+  padding-left: 8px; }
+
+.paginginput {
+  -webkit-appearance: none;
+  /*Removes default chrome and safari style*/
+  -moz-appearance: none;
+  /* Removes Default Firefox style*/
+  appearance: none;
+  background: #0088cc url(img/select-arrow.png) no-repeat 90% center;
+  width: 100px;
+  /*Width of select dropdown to give space for arrow image*/
+  text-indent: 0.01px;
+  /* Removes default arrow from firefox*/
+  text-overflow: "";
+  /*Removes default arrow from firefox*/
+  /*My custom style for fonts*/
+  color: #FFF;
+  background-color: white;
+  color: #000;
+  border: 1px solid #012B39;
+  height: 28px;
+  padding-left: 5px; }
+
+.paginginput option {
+  height: 35px;
+  padding: 5px;
+  line-height: 35px; }
+
+.paginginput::-webkit-scrollbar {
+  margin-top: 5px;
+  width: 12px;
+  height: 15px; }
+
+.paginginput::-webkit-scrollbar-track {
+  margin-top: 2px; }
+
+.paginginput::-webkit-scrollbar-thumb {
+  background-color: #e2b842; }
 
 /*# sourceMappingURL=TRexGrid.css.map */

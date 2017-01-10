@@ -21,6 +21,7 @@
     <Content Include="Content\TRexGrid.css">
       <DependentUpon>TRexGrid.scss</DependentUpon>
     </Content>
+    <Content Include="TRexGrid\enscroll-0.6.2.min.js" />
     <Content Include="TRexGrid\TRexGrid.html" />
     <Content Include="TRexGrid\TRexGrid.js" />
     <Content Include="TRexGrid\TRexGrid.min.js" />

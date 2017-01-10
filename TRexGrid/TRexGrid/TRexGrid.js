@@ -22,11 +22,13 @@
 
     var developerDefaults, dt, build, utility, instancePrototypes = {
         _dom: dom,
+        _processing:processing,
         _header: header,
         _rowWriter: defaultRowWiter,
         _pagination: pagination
+       
     },
-        _columns, col, records, datapage;
+        _columns, col, records, datapage,$tbody;
 
     // Create the plug-in global defaults 
     developerDefaults = {
@@ -35,6 +37,7 @@
             sort: !0,
             search: !0,
             recordCount: !0,
+            design:'awezi'  /* stacked */
         },
         paginate: {
             maxRows: 10,
@@ -155,6 +158,7 @@
                 header = utility.normalizeText(header, settings.table.defaultColumnIdStyle);
             if (settings.features.sort) {
                 var $span = $('<span class="dropdown"><a href=\"javascript:void(0);\" id="sorticon" class="glyphicon glyphicon-filter"></a><div class="dropdown-content"><a href="#"><span class="glyphicon glyphicon-sort-by-attributes"></span>&nbsp;&nbsp;Sort Asc</a><a href="#"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>&nbsp;&nbsp;Sort Desc</a></div></span>');
+                //var $span = $('<a class="sorticon"><span class="fa fa-filter"></span></a>')
                 return $th.text(header).append($span);
             }
             return $th.text(header);
@@ -163,11 +167,11 @@
 
     function defaultRowWiter(obj, settings) {
         this.initOnLoad = function () {
+            $tbody = $('<tbody />');
             return true;
         };
         this.init = function () {
             datapage = arguments[0] || 0;
-            var $tbody = $('<tbody />');
             obj.$element.append($tbody);
             for (var r = datapage * settings.paginate.maxRows; r < (datapage * settings.paginate.maxRows) + settings.paginate.maxRows; r+=1) {
                 var fragTrow = $("<tr>", {
@@ -179,8 +183,9 @@
             }
         };
         this._rowWriter = function (rowindex, colindex, cellValue, id) {
-            var $td = $('<td />', {
-                id: id
+            var $td = $('<td  />', {
+                id: id,
+                style:settings.features.design =='stacked'?'padding-bottom:1px':''
             });
             var colType = {
                 'link': function () {
@@ -259,13 +264,14 @@
         };
         var clear = function () {
             obj.$element.find('tbody').html('');
+            $('.paginglink').find('a').removeClass('active');
         }
         this._getNavBar = function () {
             var nav = $('<div>', {
                 class: "paginglink"
             });
             for (var i = 0; i < Math.ceil(records.length / settings.paginate.maxRows) ; i++) {
-                if (i < 10) {
+                if (i < 9) {
                     var $a = $('<a>', {
                         href: '#',
                         text: (i + 1),
@@ -273,6 +279,14 @@
                     }).bind('click', function (e) {
                         pageClickHandler(e);
                     }).appendTo(nav);
+                }
+                if (i >= 10) {
+                    if (i >= 10 && i < 11) {
+                        var $select = $('<select />', { class: 'paginginput' }).bind('change', function () {
+                            var pageNum = $('option:selected', this).attr("data-page"); datapage = pageNum, clear(), callback = new defaultRowWiter(obj, settings).init(parseInt(pageNum));
+                        }).appendTo(nav);
+                    }
+                    var $option = $('<option data-page='+i +'>' + i + '</option>').appendTo($select);
                 }
             }
             $('<a>', {
@@ -294,15 +308,67 @@
         };
         var pageClickHandler = function (event) {
             event.preventDefault();
-            clear();
+            clear(), $(event.target).addClass('active');
             var pageNum = $(event.target).attr('data-page');
             callback = new defaultRowWiter(obj, settings).init(pageNum);
         };
         var pageStepHandler = function (event) {
             event.preventDefault();
             clear();
-            $(event.target).attr('data-direction') == -1 ? new defaultRowWiter(obj, settings).init(datapage - 1 < 0 ? 0 : datapage - 1) : new defaultRowWiter(obj, settings).init(datapage + 1 < 0 ? 0 : datapage + 1);
+            $(event.target).attr('data-direction') == -1 ? new defaultRowWiter(obj, settings).init(parseInt(datapage) - 1 < 0 ? 0 : parseInt(datapage) - 1) : new defaultRowWiter(obj, settings).init(parseInt(datapage) + 1 < 0 ? 0 : parseInt(datapage) + 1);
         }
+    }
+
+    function processing(obj, settings) {
+        this.initOnLoad = function () {
+            return true;
+        };
+        this.init = function () {
+            this.attach();
+        };
+
+        this.create = function () {
+            var $processing = $('<div></div>', {
+                html: '<span>' + settings.inputs.processingText + '</span>',
+                id: 'dynatable-processing-' + obj.element.id,
+                'class': 'dynatable-processing',
+                style: 'position: absolute; display: none;'
+            });
+
+            return $processing;
+        };
+
+        this.position = function () {
+            var $processing = $('#dynatable-processing-' + obj.element.id),
+                $span = $processing.children('span'),
+                spanHeight = $span.outerHeight(),
+                spanWidth = $span.outerWidth(),
+                $covered = obj.$element,
+                offset = $covered.offset(),
+                height = $covered.outerHeight(), width = $covered.outerWidth();
+
+            $processing
+              .offset({ left: offset.left, top: offset.top })
+              .width(width)
+              .height(height)
+            $span
+              .offset({ left: offset.left + ((width - spanWidth) / 2), top: offset.top + ((height - spanHeight) / 2) });
+
+            return $processing;
+        };
+
+        this.attach = function () {
+            obj.$element.before(this.create());
+        };
+
+        this.show = function () {
+            $('#dynatable-processing-' + obj.element.id).show();
+            this.position();
+        };
+
+        this.hide = function () {
+            $('#dynatable-processing-' + obj.element.id).hide();
+        };
     }
 
     utility = dt.utility = {
