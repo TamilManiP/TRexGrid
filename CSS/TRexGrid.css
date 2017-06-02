@@ -1,0 +1,291 @@
+@charset "UTF-8";
+body {
+  font-family: Consolas; }
+
+.tRexGrid {
+  overflow-x: auto;
+  height: 411px;
+  border: 6px solid #012B39;
+  border-radius: 4px; }
+
+.gridHeder {
+  height: 50px;
+  background-color: transparent; }
+
+.tRexGrid::-webkit-scrollbar {
+  margin-top: 5px;
+  width: 12px;
+  height: 15px;
+  -moz-appearance: toolbarbutton; }
+
+.tRexGrid::-webkit-scrollbar-track {
+  margin-top: 2px; }
+
+.tRexGrid::-webkit-scrollbar-thumb {
+  background-color: #e2b842; }
+
+.tRexInner {
+  position: absolute;
+  padding: 4px;
+  width: 40px;
+  background-color: #E2B842;
+  top: 24px;
+  margin-left: -40px;
+  border-radius: 4px 0px 0px 4px; }
+
+.tRexInner, tfoot {
+  height: 40px; }
+
+table, tfoot {
+  background-color: #012B39; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  user-select: none; }
+  table tbody tr {
+    transition: background 0.25s ease; }
+    table tbody tr:hover {
+      background-color: #014055; }
+  table td {
+    color: #fff;
+    font-weight: 400;
+    padding: 0.55em 0.85em;
+    font-size: 0.90em;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(153, 153, 153, 0.2);
+    min-width: 100px;
+    white-space: nowrap; }
+    table td .disabled {
+      color: #4F5F64; }
+    table td .error, table td .negation {
+      color: Red; }
+    table td .edinput {
+      border-radius: 2px;
+      color: #000;
+      border: 1px solid #dcdcdc;
+      transition: box-shadow 0.3s, border 0.3s; }
+      table td .edinput:focus {
+        border: 1px solid #707070;
+        box-shadow: 0 0 5px 1px #969696; }
+  table th {
+    border-bottom: 1px solid #364043;
+    color: #E2B842;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 0.7em 1em;
+    text-align: left;
+    border-right: 1px solid rgba(153, 153, 153, 0.2);
+    white-space: nowrap; }
+  table tfoot {
+    padding: 10px; }
+
+#sorticon {
+  padding: 6px;
+  color: #f6eac7;
+  cursor: pointer;
+  border-radius: 3px 3px 0px 0px;
+  text-decoration: none; }
+  #sorticon:hover {
+    background-color: #E2B842;
+    color: White;
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2); }
+
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  .dropdown:hover .dropdown-content {
+    display: block; }
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41; }
+  .dropdown .dropdown-content {
+    left: -2.5px;
+    display: none;
+    position: absolute;
+    background-color: #E2B842;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 5px 5px; }
+    .dropdown .dropdown-content a {
+      color: White;
+      padding: 8px 10px;
+      text-decoration: none;
+      display: block; }
+      .dropdown .dropdown-content a:hover #sorticon {
+        background-color: #014055; }
+
+.paginglink {
+  width: 100%;
+  margin-top: 0px;
+  height: 35px;
+  text-align: left;
+  margin-top: 4px;
+  overflow-x: auto; }
+  .paginglink a {
+    border-style: solid;
+    border-color: #ddd;
+    padding: 4px;
+    text-align: center;
+    display: inline-block;
+    height: 33px;
+    width: 39.9px;
+    color: #fff;
+    background-color: #012B39;
+    margin: 0;
+    text-decoration: none; }
+    .paginglink a:hover {
+      border: 2px solid #E2B842;
+      background-color: #E2B842;
+      color: #fff; }
+  .paginglink a.active {
+    border: 2px solid #E2B842;
+    background-color: #E2B842;
+    color: #fff; }
+
+#checkb {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 25px;
+  margin-right: 15px;
+  font-size: 13px;
+  margin-bottom: -5px; }
+  #checkb:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #E2B842;
+    /*box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+    border-radius: 3px; }
+
+input[type=checkbox] {
+  display: none; }
+
+input[type=checkbox]:checked + #checkb:before {
+  content: '✔';
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 15px; }
+
+.maxl {
+  margin: 25px; }
+
+.inline {
+  display: table-cell; }
+
+.inline + .inline {
+  margin-left: 10px; }
+
+.radio {
+  color: #999;
+  font-size: 15px;
+  position: relative; }
+  .radio input[type="radio"] {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity)"; }
+  .radio span {
+    position: relative;
+    padding-left: 20px; }
+    .radio span:after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      border: 3px solid;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      border-radius: 100%;
+      -moz-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box; }
+
+.radio input[type="radio"]:checked + span {
+  color: #E2B842; }
+
+.radio input[type="radio"]:checked + span:before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  background: #E2B842;
+  left: 5px;
+  top: 6px;
+  border-radius: 100%; }
+
+.dynatable-processing {
+  background: #000;
+  opacity: 0.6;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+  .dynatable-processing span {
+    background: #FFF;
+    border: solid 2px #57A957;
+    color: #333;
+    padding: 25px;
+    font-size: 2em;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); }
+    .dynatable-processing span img {
+      vertical-align: middle; }
+
+.sorticon {
+  color: #E2B842;
+  padding-left: 8px; }
+
+.paginginput {
+  -webkit-appearance: none;
+  /*Removes default chrome and safari style*/
+  -moz-appearance: none;
+  /* Removes Default Firefox style*/
+  appearance: none;
+  background: #0088cc url(img/select-arrow.png) no-repeat 90% center;
+  width: 100px;
+  /*Width of select dropdown to give space for arrow image*/
+  text-indent: 0.01px;
+  /* Removes default arrow from firefox*/
+  text-overflow: "";
+  /*Removes default arrow from firefox*/
+  /*My custom style for fonts*/
+  color: #FFF;
+  background-color: white;
+  color: #000;
+  border: 1px solid #012B39;
+  height: 28px;
+  padding-left: 5px; }
+
+.paginginput option {
+  height: 35px;
+  padding: 5px;
+  line-height: 35px; }
+
+.paginginput::-webkit-scrollbar {
+  margin-top: 5px;
+  width: 12px;
+  height: 15px; }
+
+.paginginput::-webkit-scrollbar-track {
+  margin-top: 2px; }
+
+.paginginput::-webkit-scrollbar-thumb {
+  background-color: #e2b842; }
+
+/*# sourceMappingURL=TRexGrid.css.map */

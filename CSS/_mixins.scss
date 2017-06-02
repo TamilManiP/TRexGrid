@@ -1,0 +1,25 @@
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin filter($opacity) {
+  filter: alpha(opacity=$opacity);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity)";
+}
+
+@mixin boxsizing($sizing) {
+  -moz-box-sizing: $sizing;
+  -o-box-sizing: $sizing;
+  -ms-box-sizing: $sizing;
+  -webkit-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
